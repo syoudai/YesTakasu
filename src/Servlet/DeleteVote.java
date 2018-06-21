@@ -1,7 +1,6 @@
 package Servlet;
 
 import java.io.IOException;
-import java.util.ArrayList;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -10,19 +9,20 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import model.TouhyouBean;
+import dao.TouhyouDao;
+
 
 /**
- * Servlet implementation class select2
+ * Servlet implementation class DeleteVote
  */
-@WebServlet("/select2")
-public class select2 extends HttpServlet {
+@WebServlet("/DeleteVote")
+public class DeleteVote extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public select2() {
+    public DeleteVote() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -33,23 +33,17 @@ public class select2 extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		//response.getWriter().append("Served at: ").append(request.getContextPath());
-
-		String path="kontentDisp.jsp";
 		 HttpSession session= request.getSession();
-		 ArrayList<TouhyouBean> tdlist = (ArrayList<TouhyouBean>)session.getAttribute("tlist");
 
-		 String id1 =request.getParameter("id");
-
-			int id =Integer.parseInt(id1);
-			System.out.println("Id"+id);
-			TouhyouBean touhyouBean= tdlist.get(id);
-			System.out.println(touhyouBean.getTouhyouname());
-
-			session.setAttribute("VoteNumbber",id);
-			session.setAttribute("voteData",touhyouBean);
+		 int id=(int) session.getAttribute("VoteNumbber");
 
 
-								request.getRequestDispatcher(path).forward(request,response);
+
+		TouhyouDao touhyouDao =new TouhyouDao();
+
+
+		touhyouDao.DeleteTouhyou(id);
+		request.getRequestDispatcher("deletekakuninn.jsp").forward(request,response);
 
 	}
 

@@ -71,6 +71,56 @@ public class TouhyouDao extends DaoBase {
 }
 	return tlist;
 	}
+	public TouhyouBean DeleteTouhyou(int id) {
+		//ユーザー削除するためのSQLメソッド
+		TouhyouBean touhyouBean=null;
+
+		try {
+			super.DbOpen();
+			System.out.println("飛べてる？");
+			String sql = "DELETE FROM TouhyouData WHERE touhyouid=?  ";
+			stmt =con.prepareStatement(sql);
+			stmt.setInt(1,id);
+			rsno =stmt.executeUpdate();
+
+	}catch(Exception e){
+		touhyouBean =null;
+	}finally {
+		try {
+			super.DbClose();
+		}catch(Exception e) {
+			System.out.println("error");
+		}
+	}
+		return touhyouBean;
+		}
+	public TouhyouBean UpdateTouhyou(String name,String Data,String A, String B,int touhyouid) {
+		//ユーザー更新するためのSQLメソッド
+		TouhyouBean touhyouBean=null;
+
+		try {
+			super.DbOpen();
+			String sql = "UPDATE TouhyouData SET  touhyouname=?,touhyouData=?, A=?,B=? WHERE touhyouid=?";
+			stmt =con.prepareStatement(sql);
+			stmt.setString(1,name);
+			stmt.setString(2,Data);
+			stmt.setString(3,A);
+			stmt.setString(4,B);
+			stmt.setInt(5,touhyouid);
+			System.out.println("touhyouid"+touhyouid);
+			rsno =stmt.executeUpdate();
+
+	}catch(Exception e){
+		touhyouBean =null;
+	}finally {
+		try {
+			super.DbClose();
+		}catch(Exception e) {
+			System.out.println("error");
+		}
+	}
+		return touhyouBean;
+		}
 
 
 
