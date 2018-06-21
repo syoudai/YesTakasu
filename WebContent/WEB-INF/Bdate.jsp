@@ -10,6 +10,6 @@
 
 Bに投票しました。<br>
 
-<a href =っyふ></a>
+<a href =っyふ  ></a>
 </body>
 </html>
