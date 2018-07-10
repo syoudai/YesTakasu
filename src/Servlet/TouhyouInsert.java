@@ -3,18 +3,21 @@ package Servlet;
 import java.io.IOException;
 
 import javax.servlet.ServletException;
+import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import javax.servlet.http.Part;
 
 import dao.TouhyouDao;
-
+@MultipartConfig(location="/WebContent/img", maxFileSize=1048576)
 /**
  * Servlet implementation class TouhyouInsert
  */
 @WebServlet("/TouhyouInsert")
+
 public class TouhyouInsert extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -37,6 +40,7 @@ public class TouhyouInsert extends HttpServlet {
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
+
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		//doGet(request, response);
@@ -48,6 +52,9 @@ public class TouhyouInsert extends HttpServlet {
 		String a =request.getParameter("A");
 		String b =request.getParameter("B");
 
+		Part part = request.getPart("file");
+        String name = this.getFileName(part);
+
 
 
 		TouhyouDao touhyouDao =new TouhyouDao();
@@ -58,5 +65,16 @@ public class TouhyouInsert extends HttpServlet {
 	    request.getRequestDispatcher("touhyouDisp.jsp").forward(request,response);
 
 	}
-
+	private String getFileName(Part part) {
+        String name = null;
+        for (String dispotion : part.getHeader("Content-Disposition").split(";")) {
+            if (dispotion.trim().startsWith("filename")) {
+                name = dispotion.substring(dispotion.indexOf("=") + 1).replace("\"", "").trim();
+                name = name.substring(name.lastIndexOf("\\") + 1);
+                break;
+            }
+        }
+        return name;
+    }
 }
+
