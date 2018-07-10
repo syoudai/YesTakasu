@@ -32,7 +32,7 @@ public class DaoBase {
 			//指定するデータベースへ接続(引数:URL/利用ユーザ/パスワード)
 			con=DriverManager.getConnection(
 
-					"jdbc:mysql://jousen5.aso-abcc.com:3306/murasato_db", "murasato_user", "1111");
+					"jdbc:mysql://localhost:3306/投票システム", "root", "root");
 
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
