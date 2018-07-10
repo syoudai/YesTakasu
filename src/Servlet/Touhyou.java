@@ -32,7 +32,12 @@ public class Touhyou extends HttpServlet {
 		String path="";
 		String touhyou =request.getParameter("vote");
 		System.out.println(touhyou);
+
+
+
 		if(touhyou.equals("A")) {
+
+
 			path="test.jsp";
 
 		}else{
