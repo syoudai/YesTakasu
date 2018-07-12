@@ -7,6 +7,10 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+import dao.RirekidDao;
+import model.TouhyouBean;
 
 /**
  * Servlet implementation class Touhyou
@@ -30,20 +34,25 @@ public class Touhyou extends HttpServlet {
 		// TODO Auto-generated method stub
 		//response.getWriter().append("Served at: ").append(request.getContextPath());
 		String path="";
-		String touhyou =request.getParameter("vote");
-		System.out.println(touhyou);
 
-		System.out.println("sine");
+		String touhyou =request.getParameter("vote");
+		//int pine  = Integer.parseInt(touhyou);
+		System.out.println(touhyou);
+		//カウント処理
+		HttpSession session=request.getSession();
+		TouhyouBean tddate=(TouhyouBean) session.getAttribute("tddate");
+		int id=tddate.getTouhyouid();
+
+		RirekidDao rirekidDao =new RirekidDao();
 
 		if(touhyou.equals("A")) {
-
-
-			path="test.jsp";
-
-		}else{
-			path="test2.jsp";
-
+			rirekidDao.UpdateCountA(id);
+			path="top.jsp";	
+			}else{
+			rirekidDao.UpdateCountB(id);
+			path="top.jsp";
 		}
+
 		request.getRequestDispatcher(path).forward(request,response);
 	}
 
@@ -52,7 +61,7 @@ public class Touhyou extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		//doGet(request, response);
+		doGet(request, response);
 
 
 
