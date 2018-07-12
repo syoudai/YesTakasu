@@ -33,7 +33,7 @@ public class Touhyou extends HttpServlet {
 		String touhyou =request.getParameter("vote");
 		System.out.println(touhyou);
 
-
+		System.out.println("sine");
 
 		if(touhyou.equals("A")) {
 
