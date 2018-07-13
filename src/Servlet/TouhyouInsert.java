@@ -63,8 +63,8 @@ public class TouhyouInsert extends HttpServlet {
 
 
 
-	    touhyouDao.InsertTouhyou(tid,tname,tData,a,b,name);
-	    session.setAttribute("ttlist",touhyouDao.InsertTouhyou(tid,tname,tData,a,b,name));
+	    touhyouDao.InsertTouhyou(tname,tData,a,b,name);
+	    session.setAttribute("ttlist",touhyouDao.InsertTouhyou(tname,tData,a,b,name));
 	    request.getRequestDispatcher("touhyouDisp.jsp").forward(request,response);
 
 	}

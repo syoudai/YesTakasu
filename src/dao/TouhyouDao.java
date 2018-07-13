@@ -10,6 +10,7 @@ public class TouhyouDao extends DaoBase {
 
 
 
+
 	DataSource ds =null;
 
 	public TouhyouBean InsertTouhyou(String tname,String tdata,String A,String B,String name) {
