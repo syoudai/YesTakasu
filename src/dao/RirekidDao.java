@@ -2,21 +2,21 @@ package dao;
 
 import javax.sql.DataSource;
 
-import model.TouhyouBean;
+import model.RirekiBean;
 
 public class RirekidDao extends DaoBase{
 	DataSource ds =null;
-	public TouhyouBean UpdateCountA(int id) {
+	public RirekiBean UpdateCountA(int touhyouid) {
 		//A or Bの投票にカウントする
-		TouhyouBean touhyuBean=null;
+		RirekiBean RirekiBean=null;
 		try {
 			super.DbOpen();
 			String sql = "UPDATE Touhyoudata SET A=A+1 WHERE touhyouid=?";
 			stmt =con.prepareStatement(sql);
-			stmt.setInt(1,id);
+			stmt.setInt(1,touhyouid);
 			rsno =stmt.executeUpdate();
 		}catch(Exception e){
-			touhyuBean =null;
+			RirekiBean =null;
 		}finally {
 			try {
 				super.DbClose();
@@ -24,18 +24,18 @@ public class RirekidDao extends DaoBase{
 				System.out.println("errorfuckyou");
 			}
 		}
-			return touhyuBean;
+			return RirekiBean;
 		}
-	public TouhyouBean UpdateCountB(int id) {
-		TouhyouBean touhyuBean=null;
+	public RirekiBean UpdateCountB(int touhyouid) {
+		RirekiBean RirekiBean=null;
 		try {
 			super.DbOpen();
-			String sql = "UPDATE Touhyoudata SET B=B+1 WHERE touhyouid=?";
+			String sql = "UPDATE Rirekidata SET B=B+1 WHERE touhyouid=?";
 			stmt =con.prepareStatement(sql);
-			stmt.setInt(1,id);
+			stmt.setInt(1,touhyouid);
 			rsno =stmt.executeUpdate();
 		}catch(Exception e){
-			touhyuBean =null;
+			RirekiBean =null;
 		}finally {
 			try {
 				super.DbClose();
@@ -43,6 +43,6 @@ public class RirekidDao extends DaoBase{
 				System.out.println("errorfuckyou");
 			}
 	}
-		return touhyuBean;
+		return RirekiBean;
 	}
 }
