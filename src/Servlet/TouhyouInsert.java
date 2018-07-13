@@ -59,9 +59,12 @@ public class TouhyouInsert extends HttpServlet {
 
 		TouhyouDao touhyouDao =new TouhyouDao();
 
+	        part.write(getServletContext().getRealPath("/WEB-INF/img") + "/" + name);
 
-	    touhyouDao.InsertTouhyou(tid,tname,tData,a,b);
-	    session.setAttribute("ttlist",touhyouDao.InsertTouhyou(tid,tname,tData,a,b));
+
+
+	    touhyouDao.InsertTouhyou(tid,tname,tData,a,b,name);
+	    session.setAttribute("ttlist",touhyouDao.InsertTouhyou(tid,tname,tData,a,b,name));
 	    request.getRequestDispatcher("touhyouDisp.jsp").forward(request,response);
 
 	}

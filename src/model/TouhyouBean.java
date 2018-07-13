@@ -6,6 +6,13 @@ public class TouhyouBean {
 	String touhyouData;
 	String touhyouA;
 	String touhyouB;
+	String name;
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
 	public TouhyouBean(int touhyouid, String touhyouname, String touhyouData,String touhyouA,String touhyouB) {
 		super();
 		this.touhyouid = touhyouid;
@@ -14,7 +21,18 @@ public class TouhyouBean {
 		this.touhyouA=touhyouA;
 		this.touhyouB=touhyouB;
 
+
 	}
+	public TouhyouBean(int touhyouid, String touhyouname, String touhyouData,String touhyouA,String touhyouB,String name) {
+		super();
+		this.touhyouid = touhyouid;
+		this.touhyouname = touhyouname;
+		this.touhyouData = touhyouData;
+		this.touhyouA=touhyouA;
+		this.touhyouB=touhyouB;
+		this.name=name;
+	}
+
 	public TouhyouBean(){
 
 	}

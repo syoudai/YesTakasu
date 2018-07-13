@@ -12,7 +12,7 @@ public class TouhyouDao extends DaoBase {
 
 	DataSource ds =null;
 
-	public TouhyouBean InsertTouhyou(int tnumber, String tname,String tdata,String A,String B) {
+	public TouhyouBean InsertTouhyou(String tname,String tdata,String A,String B,String name) {
 		//
 		TouhyouBean touhyouBean=null;
 
@@ -20,11 +20,12 @@ public class TouhyouDao extends DaoBase {
 			super.DbOpen();
 			String sql = "INSERT INTO TouhyouData VALUES (?,?,?,?,?)";
 			stmt =con.prepareStatement(sql);
-			stmt.setInt(1,tnumber);
-			stmt.setString(2,tname);
-			stmt.setString(3,tdata);
-			stmt.setString(4,A);
-			stmt.setString(5,B);
+
+			stmt.setString(1,tname);
+			stmt.setString(2,tdata);
+			stmt.setString(3,A);
+			stmt.setString(4,B);
+			stmt.setString(5,name);
 			rsno =stmt.executeUpdate();
 
 	}catch(Exception e){

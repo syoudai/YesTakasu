@@ -18,7 +18,7 @@
 	投票データ:<input type="text" name = "touhyouData" style="margin-left:40px"><br><br>
 	A:<input type="text" name = "A" style="margin-left:40px"><br><br>
 	B:<input type="text" name = "B" style="margin-left:40px"><br><br>
-	画像 : <input type="file" name="image" size="30" /><br><br>
+	画像 : <input type="file" name="file" size="30" /><br><br>
 	<input type="submit" value="登録">
 	</form>
 
