@@ -42,12 +42,13 @@ public class Touhyou extends HttpServlet {
 		HttpSession session=request.getSession();
 		TouhyouBean tddate=(TouhyouBean) session.getAttribute("tddate");
 		int id=tddate.getTouhyouid();
+		System.out.println("投票ID"+id);
 
 		RirekidDao rirekidDao =new RirekidDao();
 
 		if(touhyou.equals("A")) {
 			rirekidDao.UpdateCountA(id);
-			path="top.jsp";	
+			path="top.jsp";
 			}else{
 			rirekidDao.UpdateCountB(id);
 			path="top.jsp";

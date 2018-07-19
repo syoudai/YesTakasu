@@ -11,7 +11,7 @@ public class RirekidDao extends DaoBase{
 		RirekiBean RirekiBean=null;
 		try {
 			super.DbOpen();
-			String sql = "UPDATE Touhyoudata SET A=A+1 WHERE touhyouid=?";
+			String sql = "UPDATE RirekiData SET A=A+1 WHERE touhyouid=?";
 			stmt =con.prepareStatement(sql);
 			stmt.setInt(1,touhyouid);
 			rsno =stmt.executeUpdate();
@@ -30,7 +30,7 @@ public class RirekidDao extends DaoBase{
 		RirekiBean RirekiBean=null;
 		try {
 			super.DbOpen();
-			String sql = "UPDATE Rirekidata SET B=B+1 WHERE touhyouid=?";
+			String sql = "UPDATE RirekiData SET B=B+1 WHERE touhyouid=?";
 			stmt =con.prepareStatement(sql);
 			stmt.setInt(1,touhyouid);
 			rsno =stmt.executeUpdate();
