@@ -9,8 +9,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import javax.servlet.http.Part;
 
+import dao.RirekidDao;
 import dao.TouhyouDao;
 @MultipartConfig(location="/WebContent/img", maxFileSize=1048576)
 /**
@@ -45,28 +45,36 @@ public class TouhyouInsert extends HttpServlet {
 		// TODO Auto-generated method stub
 		//doGet(request, response);
 		HttpSession session = request.getSession();
-		String uid =request.getParameter("touhyouid");
-		int tid =Integer.parseInt(uid);
+
+
+
 		String tname =request.getParameter("touhyouname");
 		String tData =request.getParameter("touhyouData");
 		String a =request.getParameter("A");
 		String b =request.getParameter("B");
 
-		Part part = request.getPart("file");
-        String name = this.getFileName(part);
+		System.out.println(System.getProperty("java.io.tmpdir"));
+
+		//Part part = request.getPart("file");
+        //String name = this.getFileName(part);
 
 
 
 		TouhyouDao touhyouDao =new TouhyouDao();
+		RirekidDao rirekiDao=new RirekidDao();
 
-	        part.write(getServletContext().getRealPath("/WEB-INF/img") + "/" + name);
+	        //part.write(getServletContext().getRealPath("/WEB-INF/img") + "/" + name);
 
 
 
-	    touhyouDao.InsertTouhyou(tname,tData,a,b,name);
-	    session.setAttribute("ttlist",touhyouDao.InsertTouhyou(tname,tData,a,b,name));
+	    Integer id=touhyouDao.InsertTouhyou(tname,tData,a,b);
+	    rirekiDao.InsertRireki(id,tname);
+	    session.setAttribute("ttlist",touhyouDao.InsertTouhyou(tname,tData,a,b));
+	    session.setAttribute("trekilist",rirekiDao.InsertRireki(id,tname));
 	    request.getRequestDispatcher("touhyouDisp.jsp").forward(request,response);
 
+
+	    /*
 	}
 	private String getFileName(Part part) {
         String name = null;
@@ -79,5 +87,7 @@ public class TouhyouInsert extends HttpServlet {
         }
         return name;
     }
+    */
+	}
 }
 

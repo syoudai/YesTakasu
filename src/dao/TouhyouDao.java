@@ -1,5 +1,7 @@
 package dao;
 
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.util.ArrayList;
 
 import javax.sql.DataSource;
@@ -13,24 +15,35 @@ public class TouhyouDao extends DaoBase {
 
 	DataSource ds =null;
 
-	public TouhyouBean InsertTouhyou(String tname,String tdata,String A,String B,String name) {
+	public Integer InsertTouhyou(String tname,String tdata,String A,String B) {
 		//
 		TouhyouBean touhyouBean=null;
+		Integer lastid=null;
 
 		try {
 			super.DbOpen();
-			String sql = "INSERT INTO TouhyouData VALUES (?,?,?,?,?)";
+			String sql = "INSERT INTO TouhyouData VALUES (null,?,?,?,?)";
 			stmt =con.prepareStatement(sql);
 
 			stmt.setString(1,tname);
 			stmt.setString(2,tdata);
 			stmt.setString(3,A);
 			stmt.setString(4,B);
-			stmt.setString(5,name);
+
 			rsno =stmt.executeUpdate();
+
+			PreparedStatement stmt2 = null;
+			ResultSet rs2=null;
+
+			stmt2 = con.prepareStatement("select last_insert_id() as lastId from TouhyouData");
+			 rs2 = stmt2.executeQuery();
+			 while(rs2.next()){
+		        	lastid = rs2.getInt("lastId");
+		        }
 
 	}catch(Exception e){
 		touhyouBean =null;
+		e.printStackTrace();
 	}finally {
 		try {
 			super.DbClose();
@@ -38,7 +51,7 @@ public class TouhyouDao extends DaoBase {
 			System.out.println("error");
 		}
 	}
-		return touhyouBean;
+		return lastid;
 		}
 	public ArrayList<TouhyouBean> getTouhyou() {
 		//ユーザの情報を取得

@@ -13,7 +13,7 @@
 <body>
 <h1>投票システムを登録</h1>
 <form action="TouhyouInsert" method="post" style="width: 500px; height: 180px">
-    投票ID:<input type="text" name = "touhyouid" style="margin-left:40px"><br><br>
+
 	投票コンテンツの名前:<input type="text" name = "touhyouname" style="margin-left:40px"><br><br>
 	投票データ:<input type="text" name = "touhyouData" style="margin-left:40px"><br><br>
 	A:<input type="text" name = "A" style="margin-left:40px"><br><br>
