@@ -69,8 +69,8 @@ public class TouhyouInsert extends HttpServlet {
 
 	    Integer id=touhyouDao.InsertTouhyou(tname,tData,a,b);
 	    rirekiDao.InsertRireki(id,tname);
-	    session.setAttribute("ttlist",touhyouDao.InsertTouhyou(tname,tData,a,b));
-	    session.setAttribute("trekilist",rirekiDao.InsertRireki(id,tname));
+	   // session.setAttribute("ttlist",touhyouDao.InsertTouhyou(tname,tData,a,b));
+	   // session.setAttribute("trekilist",rirekiDao.InsertRireki(id,tname));
 	    request.getRequestDispatcher("touhyouDisp.jsp").forward(request,response);
 
 
