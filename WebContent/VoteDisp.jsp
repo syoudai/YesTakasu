@@ -20,7 +20,7 @@
 	TouhyouBean touhyouBean= tlist.get(i);
 	%>
 	<tr>
-	<th><a href="select?id=<%=i%>" ><%=touhyouBean.getTouhyouname()%></a></th>
+	<th><a href="select?id=<%=touhyouBean.getTouhyouid()%>" ><%=touhyouBean.getTouhyouname()%></a></th>
 	<%i=i+1; %>
 	<% }%>
 </table>

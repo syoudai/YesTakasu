@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import dao.RirekidDao;
 import dao.TouhyouDao;
 
 /**
@@ -33,8 +34,10 @@ public class Disp extends HttpServlet {
 		// TODO Auto-generated method stub
 		//response.getWriter().append("Served at: ").append(request.getContextPath());
 		TouhyouDao touhyouDao=new TouhyouDao();
+		RirekidDao rirekiDao=new RirekidDao();
 		HttpSession session = request.getSession();
 		session.setAttribute("tlist",touhyouDao.getTouhyou());
+		session.setAttribute("tcount",rirekiDao.getCount());
 
 		request.getRequestDispatcher("VoteDisp.jsp").forward(request,response);
 

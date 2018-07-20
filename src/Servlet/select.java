@@ -10,6 +10,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import dao.RirekidDao;
+import dao.TouhyouDao;
+import model.RirekiBean;
 import model.TouhyouBean;
 
 /**
@@ -35,14 +38,21 @@ public class select extends HttpServlet {
 		//response.getWriter().append("Served at: ").append(request.getContextPath());
 		 HttpSession session= request.getSession();
 		 ArrayList<TouhyouBean> tlist = (ArrayList<TouhyouBean>)session.getAttribute("tlist");
+		 ArrayList<RirekiBean> votecount = (ArrayList<RirekiBean>)session.getAttribute("votecount");
 
 		 String id1 =request.getParameter("id");
 
 			int id =Integer.parseInt(id1);
-			TouhyouBean touhyouBean= tlist.get(id);
+			//TouhyouBean touhyouBean= tlist.get(id);
+			//RirekiBean rirekiBean= votecount.get(id);
 
+			TouhyouDao  touhyouDao=new TouhyouDao();
+			RirekidDao rirekiDao =new RirekidDao();
 
+			TouhyouBean touhyouBean =touhyouDao.getTouhyoudata(id);
+			RirekiBean rirekiBean  =rirekiDao.getRirekidata(id);
 			session.setAttribute("tddate",touhyouBean);
+			session.setAttribute("tdcount",rirekiBean);
 
 			request.getRequestDispatcher("syousai.jsp").forward(request,response);
 	}

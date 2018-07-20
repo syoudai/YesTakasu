@@ -11,6 +11,14 @@ public class RirekiBean {
 		super();
 		// TODO 自動生成されたコンストラクター・スタブ
 	}
+	public RirekiBean(int rirekiid, int touhyouid,String touhyouname, int a, int b) {
+		// TODO 自動生成されたコンストラクター・スタブ
+		this.rirekiid=rirekiid;
+		this.touhyouid=touhyouid;
+		this.touhyouname=touhyouname;
+		this.a=a;
+		this.b=b;
+	}
 	public int getRirekiid() {
 		return rirekiid;
 	}

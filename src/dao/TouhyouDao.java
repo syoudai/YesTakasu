@@ -41,51 +41,53 @@ public class TouhyouDao extends DaoBase {
 		        	lastid = rs2.getInt("lastId");
 		        }
 
-	}catch(Exception e){
-		touhyouBean =null;
-		e.printStackTrace();
-	}finally {
-		try {
-			super.DbClose();
-		}catch(Exception e) {
-			System.out.println("error");
+		}catch(Exception e){
+			touhyouBean =null;
+			e.printStackTrace();
+		}finally {
+			try {
+				super.DbClose();
+			}catch(Exception e) {
+				System.out.println("error");
+			}
 		}
-	}
 		return lastid;
-		}
+	}
 	public ArrayList<TouhyouBean> getTouhyou() {
 		//ユーザの情報を取得
-	ArrayList<TouhyouBean>tlist= new ArrayList<TouhyouBean>();
+		ArrayList<TouhyouBean>tlist= new ArrayList<TouhyouBean>();
 
 
-	try {
-		super.DbOpen();
-		String sql = "select * from TouhyouData ";
-		stmt =con.prepareStatement(sql);
-		rs =stmt.executeQuery();
-		while(rs.next()) {
-			int tid =rs.getInt("touhyouid");
-			String tname =rs.getString("touhyouname");
-			String tdata=rs.getString("touhyouData");
-			String ta=rs.getString("A");
-			String tb=rs.getString("B");
+		try {
+			super.DbOpen();
+			String sql = "select * from TouhyouData ";
+			stmt =con.prepareStatement(sql);
+			rs =stmt.executeQuery();
+			while(rs.next()) {
+				int tid =rs.getInt("touhyouid");
+				String tname =rs.getString("touhyouname");
+				String tdata=rs.getString("touhyouData");
+				String ta=rs.getString("A");
+				String tb=rs.getString("B");
 
-		TouhyouBean touhyouBean=new TouhyouBean(tid,tname,tdata,ta,tb);
+				TouhyouBean touhyouBean=new TouhyouBean(tid,tname,tdata,ta,tb);
 
-		tlist.add(touhyouBean);
-		System.out.println("なんやねんlast");
+				tlist.add(touhyouBean);
+				System.out.println("なんやねんlast");
+			}
+		}catch(Exception e){
+
+		}finally {
+			try {
+				super.DbClose();
+			}catch(Exception e) {
+				System.out.println("error");
+			}
 		}
-}catch(Exception e){
+		return tlist;
+	}
 
-}finally {
-	try {
-		super.DbClose();
-	}catch(Exception e) {
-		System.out.println("error");
-	}
-}
-	return tlist;
-	}
+
 	public TouhyouBean DeleteTouhyou(int id) {
 		//ユーザー削除するためのSQLメソッド
 		TouhyouBean touhyouBean=null;
@@ -98,17 +100,18 @@ public class TouhyouDao extends DaoBase {
 			stmt.setInt(1,id);
 			rsno =stmt.executeUpdate();
 
-	}catch(Exception e){
-		touhyouBean =null;
-	}finally {
-		try {
-			super.DbClose();
-		}catch(Exception e) {
-			System.out.println("error");
+		}catch(Exception e){
+			touhyouBean =null;
+		}finally {
+			try {
+				super.DbClose();
+			}catch(Exception e) {
+				System.out.println("error");
+			}
 		}
-	}
 		return touhyouBean;
-		}
+	}
+
 	public TouhyouBean UpdateTouhyou(String name,String Data,String A, String B,int touhyouid) {
 		//ユーザー更新するためのSQLメソッド
 		TouhyouBean touhyouBean=null;
@@ -125,18 +128,49 @@ public class TouhyouDao extends DaoBase {
 			System.out.println("touhyouid"+touhyouid);
 			rsno =stmt.executeUpdate();
 
-	}catch(Exception e){
-		touhyouBean =null;
-	}finally {
-		try {
-			super.DbClose();
-		}catch(Exception e) {
-			System.out.println("error");
+		}catch(Exception e){
+			touhyouBean =null;
+		}finally {
+			try {
+				super.DbClose();
+			}catch(Exception e) {
+				System.out.println("error");
+			}
 		}
-	}
 		return touhyouBean;
-		}
-
-
-
 	}
+
+
+	public TouhyouBean getTouhyoudata(int id) {
+		//ユーザの情報を取得
+		TouhyouBean touhyouBean=null;
+
+		try {
+			super.DbOpen();
+			String sql = "select * from TouhyouData WHERE touhyouid=? ";
+			stmt =con.prepareStatement(sql);
+			stmt.setInt(1,id);
+			rs =stmt.executeQuery();
+			while(rs.next()) {
+				int tid =rs.getInt("touhyouid");
+				String tname =rs.getString("touhyouname");
+				String tdata=rs.getString("touhyouData");
+				String ta=rs.getString("A");
+				String tb=rs.getString("B");
+
+				touhyouBean=new TouhyouBean(tid,tname,tdata,ta,tb);
+			}
+		}catch(Exception e){
+			e.printStackTrace();
+		}finally {
+			try {
+				super.DbClose();
+			}catch(Exception e) {
+				System.out.println("error");
+			}
+		}
+		return touhyouBean;
+	}
+}
+
+

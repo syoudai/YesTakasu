@@ -1,8 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     <% TouhyouBean tddate=(TouhyouBean) session.getAttribute("tddate");%>
+    <%RirekiBean tdcount=(RirekiBean)session.getAttribute("tdcount"); %>
     <% String i=(String)request.getAttribute("i");%>
     <%@page import= "model.TouhyouBean"%>
+     <%@page import= "model.RirekiBean"%>
   <%@page import= "java.util.ArrayList"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -15,8 +17,8 @@
 タイトル:<%=tddate.getTouhyouname()%><br>
 内容:<%=tddate.getTouhyouData()%><br>
 <form action="Touhyou?id=<%=i%>">
-<input type ="radio" name="vote" value="A"><%=tddate.getTouhyouA()%><br>
-<input type ="radio" name="vote" value="B"><%=tddate.getTouhyouB()%><br>
+<input type ="radio" name="vote" value="A"><%=tddate.getTouhyouA()%>　<%=tdcount.getA() %>票<br>
+<input type ="radio" name="vote" value="B"><%=tddate.getTouhyouB()%>　<%=tdcount.getB() %>票<br>
 <input type="submit" value="投票">
 </form>
 </body>
