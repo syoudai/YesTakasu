@@ -139,5 +139,33 @@ public class RirekidDao extends DaoBase{
 		}
 		return rirekiBean;
 	}
+	public RirekiBean DeleteRireki(int id) {
+		//ユーザー削除するためのSQLメソッド
+		RirekiBean rirekiBean=null;
+
+		try {
+			super.DbOpen();
+			System.out.println("飛べてる1？");
+			String sql = "DELETE FROM RirekiData WHERE touhyouid=?  ";
+			System.out.println("飛べてる2？");
+			stmt =con.prepareStatement(sql);
+			System.out.println("飛べてる3？");
+			stmt.setInt(1,id);
+			System.out.println("飛べてる4？");
+			rsno =stmt.executeUpdate();
+			System.out.println("飛べてる5？");
+
+		}catch(Exception e){
+			rirekiBean =null;
+			e.printStackTrace();
+		}finally {
+			try {
+				super.DbClose();
+			}catch(Exception e) {
+				System.out.println("error");
+			}
+		}
+		return rirekiBean;
+	}
 
 }

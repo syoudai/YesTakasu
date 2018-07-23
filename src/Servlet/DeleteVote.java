@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import dao.RirekidDao;
 import dao.TouhyouDao;
 
 
@@ -34,15 +35,20 @@ public class DeleteVote extends HttpServlet {
 		// TODO Auto-generated method stub
 		//response.getWriter().append("Served at: ").append(request.getContextPath());
 		 HttpSession session= request.getSession();
-
+		 System.out.println("受け取り1OK");
 		 int id=(int) session.getAttribute("VoteNumbber");
+		 System.out.println("受け取り2OK");
 
 
 
 		TouhyouDao touhyouDao =new TouhyouDao();
+		RirekidDao rirekiDao=new RirekidDao();
 
+		 System.out.println("受け取り3OK");
+		 	rirekiDao.DeleteRireki(id);
+			touhyouDao.DeleteTouhyou(id);
 
-		touhyouDao.DeleteTouhyou(id);
+			 System.out.println("受け取り4OK");
 		request.getRequestDispatcher("deletekakuninn.jsp").forward(request,response);
 
 	}

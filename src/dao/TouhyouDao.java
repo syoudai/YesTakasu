@@ -94,14 +94,19 @@ public class TouhyouDao extends DaoBase {
 
 		try {
 			super.DbOpen();
-			System.out.println("飛べてる？");
+			System.out.println("飛べてる1？");
 			String sql = "DELETE FROM TouhyouData WHERE touhyouid=?  ";
+			System.out.println("飛べてる2？");
 			stmt =con.prepareStatement(sql);
+			System.out.println("飛べてる3？");
 			stmt.setInt(1,id);
+			System.out.println("飛べてる4？");
 			rsno =stmt.executeUpdate();
+			System.out.println("飛べてる5？");
 
 		}catch(Exception e){
 			touhyouBean =null;
+			e.printStackTrace();
 		}finally {
 			try {
 				super.DbClose();

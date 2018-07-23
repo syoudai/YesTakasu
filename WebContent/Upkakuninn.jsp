@@ -7,6 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-<h1>変更しました</h1>
+<h1>変更しました<a href="kTop.jsp">管理者ログイン</a></h1>
 </body>
 </html>
